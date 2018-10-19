@@ -4,3 +4,6 @@
 
 /.vs/learn-azure/v15
 /packages
+/Backend.API/obj/Debug
+/Backend.API.Tests/obj/Debug
+/.vs/learn-azure/DesignTimeBuild
