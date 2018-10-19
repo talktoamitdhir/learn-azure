@@ -5,10 +5,6 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure.services", "azure.services\azure.services.csproj", "{16271DB3-398E-4197-8FDE-7B569A5D757E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.API", "Backend.API\Backend.API.csproj", "{91074C76-A080-4298-85F7-978EB55331F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.API.Tests", "Backend.API.Tests\Backend.API.Tests.csproj", "{EE7E8C24-0880-4CEA-B63F-D56B4CD2D35F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessingFunction", "OrderProcessingFunction\OrderProcessingFunction.csproj", "{A951A7ED-DC8C-4E58-A14D-6C238030A2DF}"
 EndProject
 Global
