@@ -7,3 +7,6 @@
 /Backend.API/obj/Debug
 /Backend.API.Tests/obj/Debug
 /.vs/learn-azure/DesignTimeBuild
+/azure.services/obj/Debug
+/Backend.API.Tests/bin/Debug
+/azure.services/bin/Debug
