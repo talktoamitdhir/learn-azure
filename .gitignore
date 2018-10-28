@@ -10,3 +10,6 @@
 /azure.services/obj/Debug
 /Backend.API.Tests/bin/Debug
 /azure.services/bin/Debug
+/azure.services.interfaces/obj/Release
+/WebAPI/bin
+/WebAPI/obj/Release
