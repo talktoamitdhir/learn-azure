@@ -1,0 +1,5 @@
+C:\Users\talkt\source\repos\learn-azure\core\bin\Release\core.dll
+C:\Users\talkt\source\repos\learn-azure\core\bin\Release\core.pdb
+C:\Users\talkt\source\repos\learn-azure\core\obj\Release\core.csproj.CoreCompileInputs.cache
+C:\Users\talkt\source\repos\learn-azure\core\obj\Release\core.dll
+C:\Users\talkt\source\repos\learn-azure\core\obj\Release\core.pdb

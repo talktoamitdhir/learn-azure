@@ -12,13 +12,11 @@ namespace WebAPI.App_Start
         {
             var builder = new ContainerBuilder();
 
-            var config = GlobalConfiguration.Configuration;
-
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             container = builder.Build();
 
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
     }
 }

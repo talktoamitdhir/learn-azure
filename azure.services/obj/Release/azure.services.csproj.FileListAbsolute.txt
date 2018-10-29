@@ -3,3 +3,4 @@ C:\Users\talkt\source\repos\learn-azure\azure.services\bin\Release\azure.service
 C:\Users\talkt\source\repos\learn-azure\azure.services\obj\Release\azure.services.csproj.CoreCompileInputs.cache
 C:\Users\talkt\source\repos\learn-azure\azure.services\obj\Release\azure.services.dll
 C:\Users\talkt\source\repos\learn-azure\azure.services\obj\Release\azure.services.pdb
+C:\Users\talkt\source\repos\learn-azure\azure.services\obj\Release\azure.services.csprojAssemblyReference.cache
