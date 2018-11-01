@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessingFunction", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{9F5AD813-7C0F-47EC-8536-92D9D6A4647D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{90C898DA-3C14-4897-870E-2FCCE0B1AAE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "core\Core.csproj", "{90C898DA-3C14-4897-870E-2FCCE0B1AAE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core.interfaces", "core.interfaces\core.interfaces.csproj", "{E69A1DB4-68DC-40E2-8B7C-E7AD1868431E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Interfaces", "core.interfaces\Core.Interfaces.csproj", "{E69A1DB4-68DC-40E2-8B7C-E7AD1868431E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

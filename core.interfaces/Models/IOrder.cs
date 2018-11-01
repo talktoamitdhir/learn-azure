@@ -1,10 +1,9 @@
-﻿namespace core.Interfaces.Models
+﻿namespace Core.Interfaces.Models
 {
-    interface IOrder
+    public interface IOrder : IBaseEntity
     {
-        int Id { get; set; }
-        string GUId { get; set; }
         string OrderNumber { get; set; }
-        int CustomerId { get; set; }
+        int Quantity { get; set; }
+        string CustomerId { get; set; }
     }
 }

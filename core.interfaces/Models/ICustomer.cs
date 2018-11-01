@@ -1,11 +1,9 @@
-﻿namespace core.Interfaces.Models
+﻿namespace Core.Interfaces.Models
 {
-    interface ICustomer
+    public interface ICustomer : IBaseEntity
     {
-        int Id { get; set; }
-        string GUId { get; set; }
         string Name { get; set; }
-        int age { get; set; }
+        int Age { get; set; }
         string Address { get; set; }
     }
 }
