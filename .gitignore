@@ -13,3 +13,9 @@
 /azure.services.interfaces/obj/Release
 /WebAPI/bin
 /WebAPI/obj/Release
+/core/bin/Debug
+/core/obj/Debug
+/core/obj
+/core.interfaces/bin/Debug
+/core.interfaces/obj/Debug
+/WebAPI/obj/Debug
