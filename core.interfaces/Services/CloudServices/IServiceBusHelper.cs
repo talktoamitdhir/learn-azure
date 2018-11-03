@@ -1,10 +1,10 @@
-﻿namespace Core.Interfaces.CloudServices
+﻿using System.Threading.Tasks;
+
+namespace Core.Interfaces.CloudServices
 {
-    interface IServiceBusHelper
+    public interface IServiceBusHelper
     {
-        void SendMessageToQueue();
-        void ReceiveMessageFromQueue();
-        void SendMessageToTopic();
-        void ReceiveMessageFromTopic();
+        Task SendMessageAsync(string Message);
+        Task<object> ReceiveMessageAsync();
     }
 }

@@ -12,7 +12,7 @@ namespace Core.Repository
 {
     public class DocumentDbRespository : IRepository
     {
-        private readonly DocumentClient _client;
+        private readonly IDocumentClient _client;
         private string cosmosDBName;
 
         public DocumentDbRespository()
@@ -21,11 +21,6 @@ namespace Core.Repository
             _client = new DocumentClient(new Uri(PlatformConfigurationConstants.DOCUMENT_DB_END_POINT), "DocumentDB_PrimaryKey");
             cosmosDBName = "ABC";
             _client.CreateDatabaseIfNotExistsAsync(new Database { Id = cosmosDBName }).Wait();
-        }
-
-        public void Dispose()
-        {
-            _client.Dispose();
         }
 
         public async Task<bool> AnyAsync<T>(string id) where T : IBaseEntity

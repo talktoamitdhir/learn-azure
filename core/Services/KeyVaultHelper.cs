@@ -10,13 +10,13 @@ namespace Core.Services
     {
         private readonly AzureServiceTokenProvider _azureServiceTokenProvider;
 
-        public KeyVaultClient KeyVaultClient { get; }
+        private readonly KeyVaultClient keyVaultClient;
 
         public KeyVaultHelper()
         {
             //TODO : Register the Application with the AD to get the token
             _azureServiceTokenProvider = new AzureServiceTokenProvider();
-            KeyVaultClient = new KeyVaultClient(GetTokenAsync);
+            keyVaultClient = new KeyVaultClient(GetTokenAsync);
         }
 
         private async Task<string> GetTokenAsync(string authority, string resource, string scope)

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Repositories
 {
-    public interface IRepository : IDisposable
+    public interface IRepository
     {
         Task<bool> AnyAsync<T>(string id) where T : IBaseEntity;
         Task<T> GetAsync<T>(string id) where T : IBaseEntity;
