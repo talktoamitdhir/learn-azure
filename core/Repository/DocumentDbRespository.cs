@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.Interfaces.Models;
-using Core.Interfaces.Repositories;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents;
 using System.Linq;
+using Core.Interfaces.Models;
+using Core.Interfaces.Repositories;
+using Core.Config;
 
 namespace Core.Repository
 {
     public class DocumentDbRespository : IRepository
     {
         private readonly DocumentClient _client;
-        private string dataBaseName;
+        private string cosmosDBName;
 
         public DocumentDbRespository()
         {
             //TODO : Get DocumentDB info from the KeyVault;
-            _client = new DocumentClient(new Uri("DocumentDB_EndPoint_URL"), "DocumentDB_PrimaryKey");
-            dataBaseName = "ABC";
-            _client.CreateDatabaseIfNotExistsAsync(new Database { Id = dataBaseName }).Wait();
+            _client = new DocumentClient(new Uri(PlatformConfigurationConstants.DOCUMENT_DB_END_POINT), "DocumentDB_PrimaryKey");
+            cosmosDBName = "ABC";
+            _client.CreateDatabaseIfNotExistsAsync(new Database { Id = cosmosDBName }).Wait();
         }
 
         public void Dispose()
@@ -30,28 +31,28 @@ namespace Core.Repository
         public async Task<bool> AnyAsync<T>(string id) where T : IBaseEntity
         {
             return _client.CreateDocumentQuery<T>
-                    (UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name))
+                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
                     .Any(x => x.Id == id);
         }
 
         public async Task<T> GetAsync<T>(string id) where T : IBaseEntity
         {
             return _client.CreateDocumentQuery<T>
-                   (UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name))
+                   (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
                    .First(x => x.Id == id);
         }
 
         public async Task<IList<T>> GetAllAsync<T>() where T : IBaseEntity
         {
             return _client.CreateDocumentQuery<T>
-                    (UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name))
+                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
                     .ToList();
         }
 
         public async Task<IList<T>> GetAsync<T>(IList<string> ids) where T : IBaseEntity
         {
             return _client.CreateDocumentQuery<T>
-                   (UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name))
+                   (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
                    .Where(x => ids.Contains(x.Id))
                    .ToList();
         }
@@ -64,9 +65,9 @@ namespace Core.Repository
         /// <param name="entity">Entity to insert</param>
         public async Task InsertAsync<T>(T entity) where T : IBaseEntity
         {
-            await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(dataBaseName),
+            await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(cosmosDBName),
                                                             new DocumentCollection { Id = typeof(T).Name });
-            await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name), entity);
+            await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
         }
 
         /// <summary>
@@ -76,23 +77,23 @@ namespace Core.Repository
         /// <param name="entities">Entities to insert</param>
         public async Task InsertAsync<T>(IEnumerable<T> entities) where T : IBaseEntity
         {
-            await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(dataBaseName),
+            await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(cosmosDBName),
                 new DocumentCollection { Id = typeof(T).Name });
 
             foreach (var entity in entities)
-                await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name), entity);
+                await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
         }
 
         public async Task UpsertAsync<T>(T entity) where T : IBaseEntity
         {
-            await _client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(dataBaseName, typeof(T).Name), entity);
+            await _client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
         }
 
 
 
         public async Task DeleteAsync<T>(string id) where T : IBaseEntity
         {
-            await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(dataBaseName, typeof(T).Name, id));
+            await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(cosmosDBName, typeof(T).Name, id));
         }
 
     }

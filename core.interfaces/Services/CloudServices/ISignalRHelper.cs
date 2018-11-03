@@ -1,4 +1,4 @@
-﻿namespace core.Interfaces
+﻿namespace Core.Interfaces.CloudServices
 {
     interface ISignalRHelper
     {

@@ -1,6 +1,9 @@
-﻿namespace core.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace Core.Interfaces.CloudServices
 {
-    interface IKeyVaultHelper
+    public interface IKeyVaultHelper
     {
+        Task<string> GetSecretAsync(string secretUri);
     }
 }
