@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Azure.Documents.Client;
-using Microsoft.Azure.Documents;
-using System.Linq;
+﻿using Core.Config;
 using Core.Interfaces.Models;
 using Core.Interfaces.Repositories;
-using Core.Config;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Core.Repository
 {
@@ -25,9 +25,12 @@ namespace Core.Repository
 
         public async Task<bool> AnyAsync<T>(string id) where T : IBaseEntity
         {
-            return _client.CreateDocumentQuery<T>
-                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
-                    .Any(x => x.Id == id);
+            return await Task.Factory.StartNew(() =>
+            {
+                return _client.CreateDocumentQuery<T>
+                     (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
+                     .Any(x => x.Id == id);
+            });
         }
 
         public async Task<T> GetAsync<T>(string id) where T : IBaseEntity
@@ -76,7 +79,9 @@ namespace Core.Repository
                 new DocumentCollection { Id = typeof(T).Name });
 
             foreach (var entity in entities)
+            {
                 await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+            }
         }
 
         public async Task UpsertAsync<T>(T entity) where T : IBaseEntity
