@@ -6,6 +6,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.ServiceBus" version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core.interfaces\Core.Interfaces.csproj" />
+    <ProjectReference Include="..\core\Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

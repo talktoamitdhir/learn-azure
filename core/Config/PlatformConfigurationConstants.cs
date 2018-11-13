@@ -16,5 +16,7 @@
         public const string SERVICEBUS_CONNECTION_STRING = "";
         public const string SERVICEBUS_QUEUE_NAME = "";
         public const byte SERVICEBUS_QUEUE_NO_OF_MESSAGES = 10;
+
+        public const string QUEUE_NAME = "";
     }
 }
