@@ -45,6 +45,7 @@
     <Compile Include="Models\ITrackEntity.cs" />
     <Compile Include="Models\IOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IOrderRespository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\CloudServices\ICosmosDBHelper.cs" />
     <Compile Include="Services\CloudServices\IKeyVaultHelper.cs" />
@@ -53,6 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\APIServices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AzureFunctions.Autofac">
+      <Version>3.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

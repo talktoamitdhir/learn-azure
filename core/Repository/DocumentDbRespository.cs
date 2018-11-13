@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public class DocumentDbRespository : IRepository
+    public abstract class DocumentDbRespository : IRepository
     {
         private readonly IDocumentClient _client;
         private string cosmosDBName;
@@ -61,11 +61,13 @@ namespace Core.Repository
         /// </summary>
         /// <typeparam name="T">Type of entity to insert</typeparam>
         /// <param name="entity">Entity to insert</param>
-        public async Task InsertAsync<T>(T entity) where T : IBaseEntity
+        public async Task<bool> InsertAsync<T>(T entity) where T : IBaseEntity
         {
             await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(cosmosDBName),
                                                             new DocumentCollection { Id = typeof(T).Name });
-            await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+            var result = await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+
+            return result.StatusCode == System.Net.HttpStatusCode.Created;
         }
 
         /// <summary>
@@ -73,27 +75,31 @@ namespace Core.Repository
         /// </summary>
         /// <typeparam name="T">Type of entity to insert</typeparam>
         /// <param name="entities">Entities to insert</param>
-        public async Task InsertAsync<T>(IEnumerable<T> entities) where T : IBaseEntity
+        public async Task<bool> InsertAsync<T>(IEnumerable<T> entities) where T : IBaseEntity
         {
             await _client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(cosmosDBName),
                 new DocumentCollection { Id = typeof(T).Name });
 
             foreach (var entity in entities)
             {
-                await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+                var result = await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+                if (result.StatusCode != System.Net.HttpStatusCode.Created) return false;
             }
+            return true;
         }
 
-        public async Task UpsertAsync<T>(T entity) where T : IBaseEntity
+        public async Task<bool> UpsertAsync<T>(T entity) where T : IBaseEntity
         {
-            await _client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+            var result = await _client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+            return result.StatusCode == System.Net.HttpStatusCode.Created;
         }
 
 
 
-        public async Task DeleteAsync<T>(string id) where T : IBaseEntity
+        public async Task<bool> DeleteAsync<T>(string id) where T : IBaseEntity
         {
-            await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(cosmosDBName, typeof(T).Name, id));
+            var result = await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(cosmosDBName, typeof(T).Name, id));
+            return result.StatusCode == System.Net.HttpStatusCode.Created;
         }
 
     }
