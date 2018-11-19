@@ -17,7 +17,8 @@ namespace OrderProcessingFunction
     {
         [FunctionName("Orders")]
         public static async Task Run(
-            [ServiceBusTrigger(PlatformConfigurationConstants.QUEUE_NAME, AccessRights.Manage, Connection = "")]string myQueueItem, 
+            [ServiceBusTrigger(PlatformConfigurationConstants.SERVICEBUS_QUEUE_NAME, AccessRights.Manage, Connection = PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING)]string myQueueItem, 
+            //[ServiceBusTrigger(PlatformConfigurationConstants.SERVICEBUS_QUEUE_NAME, AccessRights.Manage)]string myQueueItem,
             TraceWriter log,
             [Inject]IOrderRespository OrderRespository)
         {

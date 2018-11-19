@@ -7,7 +7,7 @@ namespace Core.Interfaces.Repositories
     public interface IRepository
     {
         Task<bool> AnyAsync<T>(string id) where T : IBaseEntity;
-        Task<T> GetAsync<T>(string id) where T : IBaseEntity;
+        Task<T> GetAsync<T>(string id, string collectionName) where T : IBaseEntity;
         Task<IList<T>> GetAllAsync<T>() where T : IBaseEntity;
         Task<IList<T>> GetAsync<T>(IList<string> ids) where T : IBaseEntity;
         Task<bool> InsertAsync<T>(T entity) where T : IBaseEntity;

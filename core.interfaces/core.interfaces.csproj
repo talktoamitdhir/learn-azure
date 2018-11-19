@@ -48,6 +48,7 @@
     <Compile Include="Repositories\IOrderRespository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\CloudServices\ICosmosDBHelper.cs" />
+    <Compile Include="Services\CloudServices\IDocumentDBHelper.cs" />
     <Compile Include="Services\CloudServices\IKeyVaultHelper.cs" />
     <Compile Include="Services\CloudServices\IServiceBusHelper.cs" />
     <Compile Include="Services\CloudServices\ISignalRHelper.cs" />
@@ -58,6 +59,9 @@
   <ItemGroup>
     <PackageReference Include="AzureFunctions.Autofac">
       <Version>3.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Azure.DocumentDB">
+      <Version>2.1.3</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>

@@ -2,14 +2,22 @@
 using Core.Interfaces.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Azure.Documents;
+using core.Interfaces.Services.CloudServices;
+using Core.Models;
 
 namespace Core.Repository
 {
     public class OrderRepository : DocumentDbRespository, IOrderRespository
     {
+
+        public OrderRepository(IDocumentDBHelper documentDBHelper) : base(documentDBHelper)
+        {
+        }
+
         public async Task<IOrder> GetOrderAsync(string id)
         {
-            return await GetAsync<IOrder>(id);
+            return await GetAsync<Order>(id, "Orders"); 
         }
 
         public async Task<IList<IOrder>> GetOrdersAsync(IList<string> ids)

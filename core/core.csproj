@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DocumentDbRespository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Services\DocumentDBHelper.cs" />
     <Compile Include="Services\KeyVaultHelper.cs" />
     <Compile Include="Services\QueueHelper.cs" />
   </ItemGroup>

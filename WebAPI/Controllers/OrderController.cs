@@ -1,7 +1,9 @@
 ﻿using Swashbuckle.Swagger.Annotations;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Routing;
+using WebAPI.Interfaces.Services;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -11,9 +13,10 @@ namespace WebAPI.Controllers
     [RoutePrefix("Orders")]
     public class OrderController : ApiController
     {
-        public OrderController()
+        private readonly IOrderService _orderService;
+        public OrderController(IOrderService orderService)
         {
-
+            _orderService = orderService;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, description: "Get all orders", type: typeof(Order))]
@@ -22,6 +25,14 @@ namespace WebAPI.Controllers
         public IHttpActionResult GetAllOrders()
         {
             return Ok();
+        }
+
+        [SwaggerResponse(HttpStatusCode.OK, description: "Get order id", type: typeof(Order))]
+        [HttpGet]
+        [Route("GetOrder")]
+        public async Task<IHttpActionResult> GetOrder()
+        {
+            return Ok(await _orderService.GetOrderAsync("230dc334-9ae7-9cda-c8d0-502982b7c63e"));
         }
     }
 }
