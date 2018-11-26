@@ -16,7 +16,8 @@ namespace Core.Services
         {
             _keyVaultHelper = keyVaultHelper;
             //TODO : Use KeyVault to retrieve connection string;
-            _queueClient = new QueueClient(PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING, PlatformConfigurationConstants.SERVICEBUS_QUEUE_NAME);
+            
+            _queueClient = new QueueClient(new ServiceBusConnectionStringBuilder(PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING));
         }
 
         public async Task SendMessageAsync(string message)

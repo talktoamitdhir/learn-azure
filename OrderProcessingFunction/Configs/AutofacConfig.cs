@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AzureFunctions.Autofac.Configuration;
+using core.Interfaces.Services.CloudServices;
 using Core.Interfaces.CloudServices;
 using Core.Interfaces.Repositories;
 using Core.Repository;
@@ -8,13 +9,13 @@ using Microsoft.Azure.Documents;
 
 namespace OrderProcessingFunction.Configs
 {
-    class AutofacConfig
+    public class AutofacConfig
     {
         private static bool _alreadyRegistered;
         private static readonly object locker = new object();
 
 
-        public AutofacConfig()
+        public AutofacConfig(string functionName)
         {
             if (_alreadyRegistered) return;
             lock (locker)
@@ -32,7 +33,7 @@ namespace OrderProcessingFunction.Configs
                         .SingleInstance();
 
                 builder.RegisterType<DocumentDBHelper>()
-                        .As<IDocumentClient>()
+                        .As<IDocumentDBHelper>()
                         .SingleInstance();
 
                 builder.RegisterType<OrderRepository>()
@@ -46,7 +47,7 @@ namespace OrderProcessingFunction.Configs
                 //        .SingleInstance();
 
             },
-            "Orders");
+            functionName);
         }
     }
 }

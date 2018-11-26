@@ -13,8 +13,8 @@
 
         public const string SERVICEBUS_END_POINT = "";
         public const string SERVICEBUS_ENDPOINT_KEYVAULT_KEY = "";
-        public const string SERVICEBUS_CONNECTION_STRING = "dummyprojectconnectionstring";
-        public const string SERVICEBUS_QUEUE_NAME = "dummyprojectqueue";
+        public const string SERVICEBUS_CONNECTION_STRING = "ServiceBusConnectionString";
+        public const string SERVICEBUS_QUEUE_NAME_ORDERS = "orders";
         public const byte SERVICEBUS_QUEUE_NO_OF_MESSAGES = 10;
 
         // public const string QUEUE_NAME = "dummyprojectqueue";
