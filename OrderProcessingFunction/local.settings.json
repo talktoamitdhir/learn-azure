@@ -1,0 +1,8 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+      "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+      "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+      "ServiceBusConnectionString": "Endpoint=sb://dummyprojectqueue.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=p/655S6QPmR9TDAZ4kh7PCVEqKof5pYM3m3GvGSwVPU="
+    }
+}
