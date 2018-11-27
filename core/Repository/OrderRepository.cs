@@ -32,7 +32,7 @@ namespace Core.Repository
 
         public async Task<bool> InsertOrderAsync(IOrder order)
         {
-            return await InsertAsync<IOrder>(order);
+            return await InsertAsync<IOrder>(order,"Orders");
         }
 
         public async Task<bool> InsertOrdersAsync(IEnumerable<IOrder> orders)

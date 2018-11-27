@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Azure.Documents.Client;
-using Microsoft.Azure.Documents;
-using System.Linq;
+﻿using core.Interfaces.Services.CloudServices;
 using Core.Interfaces.Models;
 using Core.Interfaces.Repositories;
-using core.Interfaces.Services.CloudServices;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Core.Repository
 {
@@ -46,8 +46,8 @@ namespace Core.Repository
                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, collectionName))
                    .AsEnumerable()
                    .First(x => x.Id == id);
-                   //.Where(x => x.Id == id).FirstOrDefault();
-                   //.Select(x => x.Id == id).AsEnumerable().FirstOrDefault();
+            //.Where(x => x.Id == id).FirstOrDefault();
+            //.Select(x => x.Id == id).AsEnumerable().FirstOrDefault();
         }
 
         public async Task<IList<T>> GetAllAsync<T>() where T : IBaseEntity
@@ -75,13 +75,13 @@ namespace Core.Repository
         /// </summary>
         /// <typeparam name="T">Type of entity to insert</typeparam>
         /// <param name="entity">Entity to insert</param>
-        public async Task<bool> InsertAsync<T>(T entity) where T : IBaseEntity
+        public async Task<bool> InsertAsync<T>(T entity, string collectionName) where T : IBaseEntity
         {
             await GetDBClient();
 
             await _documentClient.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(cosmosDBName),
                                                             new DocumentCollection { Id = typeof(T).Name });
-            var result = await _documentClient.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
+            var result = await _documentClient.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, collectionName), entity);
 
             return result.StatusCode == System.Net.HttpStatusCode.Created;
         }
@@ -101,7 +101,10 @@ namespace Core.Repository
             foreach (var entity in entities)
             {
                 var result = await _documentClient.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name), entity);
-                if (result.StatusCode != System.Net.HttpStatusCode.Created) return false;
+                if (result.StatusCode != System.Net.HttpStatusCode.Created)
+                {
+                    return false;
+                }
             }
             return true;
         }
