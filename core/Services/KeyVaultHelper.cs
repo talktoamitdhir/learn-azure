@@ -45,7 +45,7 @@ namespace Core.Services
         {
             try
             {
-                SecretBundle secretValue = await _keyVaultClient.GetSecretAsync($"{GetKeyVaultServiceURL()}/secrets/{secretUri}").ConfigureAwait(false);
+                SecretBundle secretValue = await _keyVaultClient.GetSecretAsync($"{GetKeyVaultServiceURL()}/secrets/{secretUri}");
                 return secretValue.Value;
             }
             catch (Exception e)

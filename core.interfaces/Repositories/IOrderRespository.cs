@@ -8,7 +8,7 @@ namespace Core.Interfaces.Repositories
     {
         Task<IOrder> GetOrderAsync(string id);
         Task<IList<IOrder>> GetOrdersAsync(IList<string> ids);
-        Task<IList<IOrder>> GetAllOrdersAsync();
+        Task<IEnumerable<IOrder>> GetAllOrdersAsync();
         Task<bool> InsertOrderAsync(IOrder order);
         Task<bool> InsertOrdersAsync(IEnumerable<IOrder> orders);
         Task<bool> UpsertOrderAsync(IOrder order);

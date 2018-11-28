@@ -1,2 +1,1 @@
-C:\Code\Learning\learn-azure\ARMTemplate\obj\Debug\ARMTemplate.deployproj.CoreCompileInputs.cache
 C:\Users\amit.dhir\source\repos\learn-azure\ARMTemplate\obj\Debug\ARMTemplate.deployproj.CoreCompileInputs.cache

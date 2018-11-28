@@ -50,12 +50,12 @@ namespace Core.Repository
             //.Select(x => x.Id == id).AsEnumerable().FirstOrDefault();
         }
 
-        public async Task<IList<T>> GetAllAsync<T>() where T : IBaseEntity
+        public async Task<IList<T>> GetAllAsync<T>(string collectionName) where T : IBaseEntity
         {
             await GetDBClient();
 
             return _documentClient.CreateDocumentQuery<T>
-                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, typeof(T).Name))
+                    (UriFactory.CreateDocumentCollectionUri(cosmosDBName, collectionName))
                     .ToList();
         }
 

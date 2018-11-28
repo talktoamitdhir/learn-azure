@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         [Route("GetAllOrders")]
         public IHttpActionResult GetAllOrders()
         {
-            return Ok();
+            return Ok(_orderService.GetOrdersAsync());
         }
 
         [SwaggerResponse(HttpStatusCode.OK, description: "Get order id", type: typeof(Order))]

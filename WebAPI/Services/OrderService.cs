@@ -1,5 +1,6 @@
 ﻿using Core.Interfaces.Models;
 using Core.Interfaces.Repositories;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPI.Interfaces.Services;
 
@@ -20,6 +21,11 @@ namespace WebAPI.Services
         public async Task<IOrder> GetOrderAsync(string id)
         {
             return await _orderRespository.GetOrderAsync(id);
+        }
+
+        public async Task<IEnumerable<IOrder>> GetOrdersAsync()
+        {
+            return await _orderRespository.GetAllOrdersAsync();
         }
 
         public IOrder PostOrder(IOrder order)

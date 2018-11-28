@@ -1,10 +1,9 @@
-﻿using Core.Interfaces.Repositories;
+﻿using core.Interfaces.Services.CloudServices;
 using Core.Interfaces.Models;
+using Core.Interfaces.Repositories;
+using Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Azure.Documents;
-using core.Interfaces.Services.CloudServices;
-using Core.Models;
 
 namespace Core.Repository
 {
@@ -17,7 +16,7 @@ namespace Core.Repository
 
         public async Task<IOrder> GetOrderAsync(string id)
         {
-            return await GetAsync<Order>(id, "Orders"); 
+            return await GetAsync<Order>(id, "Orders");
         }
 
         public async Task<IList<IOrder>> GetOrdersAsync(IList<string> ids)
@@ -25,14 +24,14 @@ namespace Core.Repository
             return await GetAsync<IOrder>(ids);
         }
 
-        public async Task<IList<IOrder>> GetAllOrdersAsync()
+        public async Task<IEnumerable<IOrder>> GetAllOrdersAsync()
         {
-            return await GetAllAsync<IOrder>();
+            return await GetAllAsync<Order>("Orders");
         }
 
         public async Task<bool> InsertOrderAsync(IOrder order)
         {
-            return await InsertAsync<IOrder>(order,"Orders");
+            return await InsertAsync<IOrder>(order, "Orders");
         }
 
         public async Task<bool> InsertOrdersAsync(IEnumerable<IOrder> orders)

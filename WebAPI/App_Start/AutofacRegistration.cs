@@ -23,17 +23,21 @@ namespace WebAPI.App_Start
         public static void RegisterDependencies(ContainerBuilder builder)
         {
             builder.RegisterType<OrderService>()
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<OrderRepository>()
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterType<DocumentDBHelper>()
-                 .AsImplementedInterfaces();
+                 .AsImplementedInterfaces()
+                 .SingleInstance();
 
             builder.RegisterType<KeyVaultHelper>()
-                 .AsImplementedInterfaces();
-            
+                 .AsImplementedInterfaces()
+                 .SingleInstance();
+
         }
     }
 }
