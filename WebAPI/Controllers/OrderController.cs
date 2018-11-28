@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
         [SwaggerResponse(HttpStatusCode.OK, description: "Get order id", type: typeof(Order))]
         [HttpGet]
         [Route("GetOrder")]
-        public async Task<IHttpActionResult> GetOrder()
+        public async Task<IHttpActionResult> GetOrder([FromUri]string id)
         {
-            return Ok(await _orderService.GetOrderAsync("230dc334-9ae7-9cda-c8d0-502982b7c63e"));
+            return Ok(await _orderService.GetOrderAsync(id));
         }
     }
 }
