@@ -6900,20 +6900,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amit.dhir\\.nuget\\packages\\": {}
+    "C:\\Users\\ashwin.brahmarouthu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amit.dhir\\source\\repos\\learn-azure\\core.interfaces\\Core.Interfaces.csproj",
+      "projectUniqueName": "C:\\Code\\Learning\\learn-azure\\core.interfaces\\Core.Interfaces.csproj",
       "projectName": "Core.Interfaces",
-      "projectPath": "C:\\Users\\amit.dhir\\source\\repos\\learn-azure\\core.interfaces\\Core.Interfaces.csproj",
-      "packagesPath": "C:\\Users\\amit.dhir\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amit.dhir\\source\\repos\\learn-azure\\core.interfaces\\obj\\",
+      "projectPath": "C:\\Code\\Learning\\learn-azure\\core.interfaces\\Core.Interfaces.csproj",
+      "packagesPath": "C:\\Users\\ashwin.brahmarouthu\\.nuget\\packages\\",
+      "outputPath": "C:\\Code\\Learning\\learn-azure\\core.interfaces\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\amit.dhir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ashwin.brahmarouthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
