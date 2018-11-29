@@ -1,4 +1,6 @@
-﻿using Swashbuckle.Swagger.Annotations;
+﻿using Core.Interfaces.CloudServices;
+using Newtonsoft.Json;
+using Swashbuckle.Swagger.Annotations;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -14,7 +16,8 @@ namespace WebAPI.Controllers
     public class OrderController : ApiController
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly IServiceBusHelper _queueHelper;
+        public OrderController(IOrderService orderService, IServiceBusHelper QueueHelper)
         {
             _orderService = orderService;
         }
@@ -33,6 +36,15 @@ namespace WebAPI.Controllers
         public async Task<IHttpActionResult> GetOrder([FromUri]string id)
         {
             return Ok(await _orderService.GetOrderAsync(id));
+        }
+
+        [SwaggerResponse(HttpStatusCode.OK, description: "Insert Order", type: typeof(Order))]
+        [HttpPost]
+        [Route("InsertOrder")]
+        public async Task InsertOrder([FromBody]Order order)
+        {
+            //return Ok(await _orderService.PostOrder(order));
+            await _queueHelper.SendMessageAsync(JsonConvert.SerializeObject(order));       
         }
     }
 }

@@ -38,6 +38,10 @@ namespace WebAPI.App_Start
                  .AsImplementedInterfaces()
                  .SingleInstance();
 
+            builder.RegisterType<QueueHelper>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
         }
     }
 }

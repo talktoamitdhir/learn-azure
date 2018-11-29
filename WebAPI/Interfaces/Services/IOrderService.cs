@@ -8,7 +8,7 @@ namespace WebAPI.Interfaces.Services
     {
         Task<IOrder> GetOrderAsync(string id);
         Task<IEnumerable<IOrder>> GetOrdersAsync();
-        IOrder PostOrder(IOrder order);
+        //Task<bool> PostOrder(IOrder order);
         IOrder PutOrder(IOrder order);
         bool DeleteOrder(string id);
     }

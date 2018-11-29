@@ -28,10 +28,10 @@ namespace WebAPI.Services
             return await _orderRespository.GetAllOrdersAsync();
         }
 
-        public IOrder PostOrder(IOrder order)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public async Task<bool> PostOrder(IOrder order)
+        //{
+        //    return await _orderRespository.InsertOrderAsync(order);
+        //}
 
         public IOrder PutOrder(IOrder order)
         {
