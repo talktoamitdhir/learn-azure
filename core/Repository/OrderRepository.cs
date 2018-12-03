@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public class OrderRepository : DocumentDbRespository, IOrderRespository
+    public class OrderRepository : DocumentDbRespository, IOrderRepository
     {
 
         public OrderRepository(IDocumentDBHelper documentDBHelper) : base(documentDBHelper)

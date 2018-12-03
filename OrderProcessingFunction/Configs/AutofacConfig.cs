@@ -37,7 +37,7 @@ namespace OrderProcessingFunction.Configs
                         .SingleInstance();
 
                 builder.RegisterType<OrderRepository>()
-                        .As<IOrderRespository>()
+                        .As<IOrderRepository>()
                         .InstancePerLifetimeScope();
 
                 //builder.RegisterType<DocumentClient>()

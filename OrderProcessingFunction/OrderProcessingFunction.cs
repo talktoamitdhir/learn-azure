@@ -19,9 +19,8 @@ namespace OrderProcessingFunction
         [FunctionName("Orders")]
         public static async Task Run(
             [ServiceBusTrigger(PlatformConfigurationConstants.SERVICEBUS_QUEUE_NAME_ORDERS, AccessRights.Manage, Connection = PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING)]string myQueueItem, 
-            //[ServiceBusTrigger(PlatformConfigurationConstants.SERVICEBUS_QUEUE_NAME, AccessRights.Manage)]string myQueueItem,
             TraceWriter log,
-            [Inject]IOrderRespository OrderRespository)
+            [Inject]IOrderRepository OrderRespository)
         {
             //TODO : Get the connection from key vault.
             log.Info($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
@@ -31,7 +30,7 @@ namespace OrderProcessingFunction
             }
         }
 
-        private static async Task<bool> PostOrder(string myQueueItem, IOrderRespository OrderRespository)
+        private static async Task<bool> PostOrder(string myQueueItem, IOrderRepository OrderRespository)
         {
             var order = JsonConvert.DeserializeObject<Order>(myQueueItem);
             return await OrderRespository.InsertOrderAsync(order);

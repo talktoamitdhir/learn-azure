@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Repositories
 {
-    public interface IOrderRespository
+    public interface IOrderRepository
     {
         Task<IOrder> GetOrderAsync(string id);
         Task<IList<IOrder>> GetOrdersAsync(IList<string> ids);

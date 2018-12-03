@@ -9,19 +9,32 @@ namespace Core.Services
 {
     public class QueueHelper : IServiceBusHelper
     {
-        private readonly IQueueClient _queueClient;
+        private IQueueClient _queueClient;
         private readonly IKeyVaultHelper _keyVaultHelper;
 
         public QueueHelper(IKeyVaultHelper keyVaultHelper)
         {
             _keyVaultHelper = keyVaultHelper;
-            //TODO : Use KeyVault to retrieve connection string;
-            
-            _queueClient = new QueueClient(new ServiceBusConnectionStringBuilder(PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING));
         }
 
-        public async Task SendMessageAsync(string message)
+        public async Task<IQueueClient> GetQueueClientAsync(string queueName)
         {
+            try
+            {
+                string SERVICE_BUS_QUEUE_CONNECTIONSTRING = await _keyVaultHelper.GetSecretAsync(PlatformConfigurationConstants.SERVICEBUS_CONNECTION_STRING);
+                _queueClient = new QueueClient(SERVICE_BUS_QUEUE_CONNECTIONSTRING, queueName);
+                return _queueClient;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task SendMessageAsync(string message, string queueName)
+        {
+            await GetQueueClientAsync(queueName);
+
             var queueMessage = new Message(Encoding.UTF8.GetBytes(message));
             await _queueClient.SendAsync(queueMessage);
         }

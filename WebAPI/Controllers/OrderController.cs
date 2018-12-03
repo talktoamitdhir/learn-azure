@@ -17,17 +17,18 @@ namespace WebAPI.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IServiceBusHelper _queueHelper;
-        public OrderController(IOrderService orderService, IServiceBusHelper QueueHelper)
+        public OrderController(IOrderService orderService, IServiceBusHelper queueHelper)
         {
             _orderService = orderService;
+            _queueHelper = queueHelper;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, description: "Get all orders", type: typeof(Order))]
         [HttpGet]
         [Route("GetAllOrders")]
-        public IHttpActionResult GetAllOrders()
+        public async Task<IHttpActionResult> GetAllOrders()
         {
-            return Ok(_orderService.GetOrdersAsync());
+            return Ok(await _orderService.GetOrdersAsync());
         }
 
         [SwaggerResponse(HttpStatusCode.OK, description: "Get order id", type: typeof(Order))]
@@ -43,8 +44,7 @@ namespace WebAPI.Controllers
         [Route("InsertOrder")]
         public async Task InsertOrder([FromBody]Order order)
         {
-            //return Ok(await _orderService.PostOrder(order));
-            await _queueHelper.SendMessageAsync(JsonConvert.SerializeObject(order));       
+            await _queueHelper.SendMessageAsync(JsonConvert.SerializeObject(order), "orders");       
         }
     }
 }

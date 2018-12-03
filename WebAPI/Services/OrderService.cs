@@ -8,8 +8,8 @@ namespace WebAPI.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderRespository _orderRespository;
-        public OrderService(IOrderRespository orderRespository)
+        private readonly IOrderRepository _orderRespository;
+        public OrderService(IOrderRepository orderRespository)
         {
             _orderRespository = orderRespository;
         }
